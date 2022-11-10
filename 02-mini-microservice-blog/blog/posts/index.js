@@ -1,12 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { randomBytes } = require('crypto');
+//Help us to get around some policys issues domains
+const cors = require('cors');
 
 const posts = {};
 
 const app = express();
 app.use(bodyParser.json());
-
+app.use(cors());
 
 app.get('/posts', (req, res) => {
     res.send(posts);

@@ -2,10 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { randomBytes } = require('crypto');
 const { allowedNodeEnvironmentFlags } = require('process');
+//Help us to get around some policys issues domains
+const cors = require('cors');
 
 const app = express();
 app.use(bodyParser.json());
-
+app.use(cors());
 
 //Data Structure for this internal memory
 //Key will be post id 
