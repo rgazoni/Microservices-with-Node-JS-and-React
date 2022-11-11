@@ -1,3 +1,18 @@
+# Commit [fb1db92: Updating React application …]
+
+At this point the application has been successfully remodelated. See other commit bellow to understand context.
+
+This is the new architecture that solves previous request problem. 
+
+<img src='./resources/system-w-query.png' alt='System- with query and event' />
+
+-------
+
+<img src='./resources/microservices-app.png' alt='System- with query and event' />
+
+
+-------
+
 # Commit [22d0f26: Comment List feature]
 
 At this point we have a functional application.
