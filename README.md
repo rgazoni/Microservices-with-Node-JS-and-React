@@ -3,7 +3,7 @@
 
     This repository has been created to show my development within a Udemy course that I've been taking, lecture by Stephen Grider.
 
-### Title of the course 
+### Course title 
     
     Microservices with Node JS and React
 
