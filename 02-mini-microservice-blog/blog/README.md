@@ -4,4 +4,4 @@ Every microservice will be created by hand initially, to understand proccesses.
 
 ## Overview
 
-    TODO
+    Information can be found on each Release description 
