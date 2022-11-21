@@ -29,7 +29,7 @@ app.post('/posts/:id/comments', async (req, res) => {
     // || [] means if commentsByPostId[req.params.id] was undefined then by default return an empty array 
     const comments = commentsByPostId[req.params.id] || [];
 
-    comments.push( { id: commentId, content } );
+    comments.push( { id: commentId, content, status:'pending' } );
 
     commentsByPostId[req.params.id] = comments;
 
@@ -38,7 +38,8 @@ app.post('/posts/:id/comments', async (req, res) => {
         data: {
             id: commentId,
             content: content,
-            postId: req.params.id
+            postId: req.params.id,
+            status: 'pending'
         }
     });
 
@@ -46,8 +47,34 @@ app.post('/posts/:id/comments', async (req, res) => {
 
 });
 
-app.post('/events', (req, res) => {
+app.post('/events', async (req, res) => {
     console.log('Recieved event', req.body.type);
+    
+    const { type, data } = req.body;
+    
+    if (type === 'CommentModerated') {
+        const { postId, id, status, content } = data;
+        
+        const comments = commentsByPostId[postId];
+
+        //We don't have to insert it back cause is an addr
+        //Search more about how this works'
+        const comment = comments.find( comment => {
+            return comment.id === id;
+        });
+        comment.status = status;
+
+        await axios.post('http://localhost:4005/events', {
+            type: 'CommentUpdated',
+            data: {
+                id,
+                status,
+                postId,
+                content
+            }
+        });
+    }
+
     res.send({});
 });
 
