@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: query-depl
+spec:
+  replicas: 1
+  #Selector and Template are working together
+  #Selector -> match a Label to a pod
+  #Template specify config of a Pod
+  #Want the Pod to have a label of posts
+  selector:
+    matchLabels:
+      app: query
+  template:
+    metadata:
+      labels:
+        app: query
+    spec:
+      containers:
+        - name: query
+          image: rgazonil/query
+          imagePullPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: query-srv
+spec:
+  selector:
+    app: query
+  #By default type is ClusterIP
+  #type: ClusterIP This isn't needed
+  ports:
+    - name: query
+      protocol: TCP
+      port: 4002
+      targetPort: 4002
