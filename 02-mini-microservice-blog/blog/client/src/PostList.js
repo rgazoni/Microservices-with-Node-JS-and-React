@@ -12,7 +12,7 @@ const PostList = () => {
     const fetchPosts = async () => {
         //Always when we make a request with axios, we get back an response object
         //that contains our data in a data property
-        const res = await axios.get("http://localhost:4002/posts");
+        const res = await axios.get("http://posts.com/posts");
         setPosts(res.data);
     };
 

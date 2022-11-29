@@ -19,7 +19,6 @@ spec:
       containers:
         - name: query
           image: rgazonil/query
-          imagePullPolicy: Always
 
 ---
 

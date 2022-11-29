@@ -19,7 +19,6 @@ spec:
       containers:
         - name: posts
           image: rgazonil/posts
-          imagePullPolicy: Always
 
 ---
 
@@ -31,7 +30,7 @@ spec:
   selector:
     app: posts
   #By default type is ClusterIP
-  #type: ClusterIP This isn't needed
+  #type: ClusterIP <- This isn't needed
   ports:
     - name: posts
       protocol: TCP

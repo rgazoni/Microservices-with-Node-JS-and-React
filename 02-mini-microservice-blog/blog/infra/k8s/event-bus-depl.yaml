@@ -19,7 +19,6 @@ spec:
       containers:
         - name: event-bus
           image: rgazonil/event-bus
-          imagePullPolicy: Always
 
 ---
 

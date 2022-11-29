@@ -10,7 +10,7 @@ const PostCreate = () => {
         event.preventDefault();
         
         //Axios uses XMLHttpRequest in the back to make a call to our API endpoint
-        await axios.post("http://localhost:4000/posts", {
+        await axios.post("http://posts.com/posts/create", {
           title,
         });
     

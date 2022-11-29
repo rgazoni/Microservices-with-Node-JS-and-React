@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: comments-depl
+  name: client-depl
 spec:
   replicas: 1
   #Selector and Template are working together
@@ -10,29 +10,29 @@ spec:
   #Want the Pod to have a label of posts
   selector:
     matchLabels:
-      app: comments
+      app: client
   template:
     metadata:
       labels:
-        app: comments
+        app: client
     spec:
       containers:
-        - name: comments
-          image: rgazonil/comments
+        - name: client
+          image: rgazonil/client
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: comments-srv
+  name: client-srv
 spec:
   selector:
-    app: comments
+    app: client
   #By default type is ClusterIP
   #type: ClusterIP This isn't needed
   ports:
-    - name: comments
+    - name: client
       protocol: TCP
-      port: 4001
-      targetPort: 4001
+      port: 3000
+      targetPort: 3000

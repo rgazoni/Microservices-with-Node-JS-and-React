@@ -1,0 +1,65 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - "./infra/k8s/*"
+#Skip pushing images by cmd bellow
+build:
+  local:
+    push: false
+  artifacts:
+    - image: rgazonil/client
+      #Directory containing the artifact's sources.
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      #Local files synced to pods instead of triggering an image build
+      #when modified. If no files are listed, sync all the files and infer
+      #the destination.
+      sync:
+        #Manual sync rules indicating the source and destination.
+        manual:
+        #Destination path in the container where the files should be synced to.
+          - dest: .
+            src: 'src/**/*.js'
+    - image: rgazonil/comments
+      context: comments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: '*.js'
+    - image: rgazonil/posts
+      context: posts
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: '*.js'
+    - image: rgazonil/query
+      context: query
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: '*.js'
+    - image: rgazonil/event-bus
+      context: event-bus
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: '*.js'
+    - image: rgazonil/moderation
+      context: moderation
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: '*.js'

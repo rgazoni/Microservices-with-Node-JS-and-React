@@ -19,7 +19,6 @@ spec:
       containers:
         - name: moderation
           image: rgazonil/moderation
-          imagePullPolicy: Always
 
 ---
 
